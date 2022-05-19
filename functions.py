@@ -44,7 +44,7 @@ def console_decide():
         d = checkfunc(number)
     except (ValueError, TypeError, ArithmeticError):
         print("Введите команду, предложенную в меню!")
-
+        exit(-1)
     a, b, error = console_input()
     if number == 3:
         answer, abs_error, n = first_kind(function_data, a, b, d_func, error, d)
@@ -126,6 +126,7 @@ def simpson_method(f, left, right, d_func, error):
                 try:
                     s1 = s1 + f(left + i * h)
                 except ZeroDivisionError:
+                    print("Значение границы было изменено, т.к находится вне ОДЗ")
                     left = left + 1e-12
                     right = right - 1e-12
             else:
